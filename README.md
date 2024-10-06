@@ -10,3 +10,5 @@ Birkaç örnek ekran görüntüsü;
 ![image](https://github.com/user-attachments/assets/63e1d415-4d92-4f27-87a9-33ac8c88ce26)
 
 ![image](https://github.com/user-attachments/assets/cf8448a9-bfc0-462c-ba80-575e8b381686)
+
+![image](https://github.com/user-attachments/assets/9e32586c-65b8-422f-b87d-2280c01fc242)
