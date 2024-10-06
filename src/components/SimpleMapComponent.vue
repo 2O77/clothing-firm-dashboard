@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Basit bir harita yapalım.</h2>
-    <div class="map-container" id="map"></div>
+    <div class="map" id="map"></div>
   </div>
 </template>
 
@@ -24,12 +24,5 @@ onMounted(() => {
 </script>
 
 <style scoped>
-#map {
-  width: 99%;
-  height: 80vh; 
-  border: 5px solid #ddd;
-  border-radius: 10px;
-  padding: 5;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+
 </style>
