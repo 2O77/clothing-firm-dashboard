@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Harita lokasyon verisi milliemlak.gov.tr üzerinden alınmıştır.</h2>
-    <p>Türkiye'de şu an Satışa sunulan taşınmaz ilanlarıdır.</p>
+    <p>Türkiye'de şu an Satışa sunulan taşınmaz ilanları gruplayarak gösterilmiştir.</p>
     <div class="map" id="map"></div>
   </div>
 </template>
@@ -10,7 +10,7 @@
 import { ref, onMounted } from 'vue'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import 'leaflet.markercluster' // MarkerCluster'ı yükleyin
+import 'leaflet.markercluster'  
 import 'leaflet.markercluster/dist/MarkerCluster.css'
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
 
@@ -24,13 +24,10 @@ const loadMap = () => {
     attribution: '© <a href="https://github.com/ertugrulakdag/vue3-map-leafletjs" target="_blank">github.com/ertugrulakdag/vue3-map-leafletjs</a>'
   }).addTo(map.value)
 
-  // Marker cluster group oluşturun
   const markers = L.markerClusterGroup()
 
-  // Veriyi yükleyip marker cluster'a ekleyin
   loadData(markers)
 
-  // Marker cluster'ı haritaya ekleyin
   map.value.addLayer(markers)
 }
 

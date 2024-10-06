@@ -13,7 +13,6 @@ import 'leaflet/dist/leaflet.css'
 
 const map = ref(null)
 const apiUrl = 'https://mebis-cbs-s-p.csb.gov.tr/Proxy/index?url=http%3A%2F%2Fmebis-geo-01.csb.gov.tr%2Fgeoserver%2FMEOP%2Fwfs%3Frequest%3DGetFeature%26version%3D2.0.0%26srsName%3DEPSG%3A3857%26outputFormat%3Dapplication%252Fjson%26typeNames%3DMEOP%3AMILEWEB_SATIS%26CQL_FILTER%3D1%3D1%20and%20ihale_tarihi%20%3E%3D%202024-10-06T00%3A00%3A00.000Z'
-const postApiUrl = 'https://mebis-s-p.csb.gov.tr/api/MileWeb/GetSatisIlanList'
 
 const loadMap = () => {
   map.value = L.map('map').setView([39.9334, 32.8597], 6)
