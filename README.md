@@ -4,6 +4,7 @@ Haritalar, uzun zamandır insanlar için dünyayı keşfetmenin en önemli yard�
 Artık günümüzde teknolojinin de gelişmesiyle haritalar mobil ve web uygulamalarında sıkça kullanılmaktadır. Bu makalede Vue 3 ve Leaflet.js ile modern bir web uygulamasında etkileşimli haritaları nasıl oluşturacağızımı keşfedeceğiz.
 
 Makalenin tamımı için : https://medium.com/@ertugrulakdag/vue-js-3-ile-leaflet-js-b8774b286a92
+
 Birkaç örnek ekran görüntüsü;
 ![image](https://github.com/user-attachments/assets/770de7bd-f9ae-4bee-9e85-bd7d5286bf57)
 
