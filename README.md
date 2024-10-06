@@ -1,5 +1,8 @@
-# Vue 3 + Vite
+# Vue js 3 ile leaflet.js kütüphanesi kullanarak harita uygulaması geliştirmek. (Developing map application using Vue js 3 and leaflet.js library)
+Haritalar, uzun zamandır insanlar için dünyayı keşfetmenin en önemli yardımcılarından biri olmuştur. 1513 senesinde Piri Reis’in ünlü haritası dönemin teknolojisine rağmen oldukça detaylı ve ileri bir haritacılık örneği olarak tarihteki yerini almıştır.
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Artık günümüzde teknolojinin de gelişmesiyle haritalar mobil ve web uygulamalarında sıkça kullanılmaktadır. Bu makalede Vue 3 ve Leaflet.js ile modern bir web uygulamasında etkileşimli haritaları nasıl oluşturacağızımı keşfedeceğiz.
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+Makalenin tamımı için : https://medium.com/@ertugrulakdag/vue-js-3-ile-leaflet-js-b8774b286a92
+![image](https://github.com/user-attachments/assets/770de7bd-f9ae-4bee-9e85-bd7d5286bf57)
+
