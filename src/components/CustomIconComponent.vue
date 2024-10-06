@@ -12,7 +12,7 @@ import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 
 const customIcon = L.icon({
-  iconUrl: 'https://organizasyonara.com/favicon-32x32.png', // İkonun URL'si
+  iconUrl: 'https://cdn4.iconfinder.com/data/icons/small-n-flat/24/map-marker-512.png', // İkonun URL'si
   iconSize: [38, 38], // İkon boyutu
   iconAnchor: [19, 38], // İkonun haritada sabitleneceği nokta
   popupAnchor: [0, -38] // Popup konumu
