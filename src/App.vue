@@ -5,6 +5,7 @@
       <li :class="{ active: activeTab === 1 }" @click="activeTab = 1">Basit Harita</li>
       <li :class="{ active: activeTab === 2 }" @click="activeTab = 2">Özelleştirilmiş Pin</li>
       <li :class="{ active: activeTab === 3 }" @click="activeTab = 3">Dimaik oluşan harita</li>
+      <li :class="{ active: activeTab === 4 }" @click="activeTab = 4">Haritada gruplanan pinler </li>
     </ul>
 
     <!-- Tab içeriği -->
@@ -12,6 +13,7 @@
       <SimpleMapComponent v-if="activeTab === 1" />
       <CustomIconComponent v-if="activeTab === 2" />
       <DynamicMapComponent v-if="activeTab === 3" />
+      <InteractiveMapComponent v-if="activeTab === 4" />
     </div>
   </div>
 </template>
@@ -21,6 +23,7 @@ import { ref } from 'vue'
 import SimpleMapComponent from './components/SimpleMapComponent.vue'
 import CustomIconComponent from './components/CustomIconComponent.vue'
 import DynamicMapComponent from './components/DynamicMapComponent.vue'
+import InteractiveMapComponent from './components/InteractiveMapComponent.vue'
 
 const activeTab = ref(1)
 </script>
