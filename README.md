@@ -7,6 +7,6 @@ Makalenin tamımı için : https://medium.com/@ertugrulakdag/vue-js-3-ile-leafle
 Birkaç örnek ekran görüntüsü;
 ![image](https://github.com/user-attachments/assets/770de7bd-f9ae-4bee-9e85-bd7d5286bf57)
 
-![image](https://github.com/user-attachments/assets/72ca1d17-ae41-46ae-8cc2-544755896492)
+![image](https://github.com/user-attachments/assets/63e1d415-4d92-4f27-87a9-33ac8c88ce26)
 
 ![image](https://github.com/user-attachments/assets/cf8448a9-bfc0-462c-ba80-575e8b381686)
