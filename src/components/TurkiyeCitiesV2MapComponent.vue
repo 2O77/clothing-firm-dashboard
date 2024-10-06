@@ -11,7 +11,7 @@ import { ref, onMounted } from 'vue'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 const customIcon = L.icon({
-  iconUrl: '/marker-icon.png', // İkonun URL'si
+  iconUrl: '/icon-32.png', // İkonun URL'si
   iconAnchor: [19, 38], // İkonun haritada sabitleneceği nokta
   popupAnchor: [-8, -35] // Popup konumu
 });
@@ -44,7 +44,7 @@ const loadData = async () => {
     if (!response.ok) {
       throw new Error("Veri alınırken hata oluştu.")
     }
-    
+
     const geoJsonData = await response.json()
 
     // Her feature için bir marker oluştur
@@ -58,7 +58,7 @@ const loadData = async () => {
       const latLng = L.Projection.SphericalMercator.unproject(L.point(coordinates))
 
       // Marker ekle
-      L.marker([latLng.lat, latLng.lng],{ icon: customIcon }).addTo(map.value)
+      L.marker([latLng.lat, latLng.lng], { icon: customIcon }).addTo(map.value)
         .bindPopup(`Yüzölçümü: ${yuzolcumu} m² <br>İhale Tarihi: ${ihale_tarihi}<br>Taşınmaz No: ${tasinmaz_no} `)
     })
   } catch (error) {
@@ -131,7 +131,7 @@ const hidePopup = (e) => {
 // ISO tarih formatını dd.MM.yyyy formatına dönüştüren fonksiyon
 const formatDate = (isoDateString) => {
   const date = new Date(isoDateString)
-  
+
   if (isNaN(date.getTime())) {
     return 'Hatalı Tarih'
   }
@@ -149,6 +149,4 @@ onMounted(() => {
 })
 </script>
 
-<style scoped>
- 
-</style>
+<style scoped></style>

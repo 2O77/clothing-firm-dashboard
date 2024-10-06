@@ -31,7 +31,7 @@ import InteractiveMapComponent from './components/InteractiveMapComponent.vue'
 import TurkiyeCitiesMapComponent from './components/TurkiyeCitiesMapComponent.vue'
 import TurkiyeCitiesV2MapComponent from './components/TurkiyeCitiesV2MapComponent.vue'
 
-const activeTab = ref(1)
+const activeTab = ref(6)
 </script>
 
 <style scoped>

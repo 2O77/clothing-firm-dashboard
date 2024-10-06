@@ -1,4 +1,3 @@
-
 <template>
   <div>
     <h2>Haritadaki Pin'i özelleştirelim.</h2>
@@ -35,7 +34,7 @@ onMounted(() => {
 <style scoped>
 #map {
   width: 99%;
-  height: 80vh; 
+  height: 80vh;
   border: 5px solid #ddd;
   border-radius: 10px;
   padding: 5;

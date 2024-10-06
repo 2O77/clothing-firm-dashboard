@@ -10,11 +10,11 @@
 import { ref, onMounted } from 'vue'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-import 'leaflet.markercluster'  
+import 'leaflet.markercluster'
 import 'leaflet.markercluster/dist/MarkerCluster.css'
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
 const customIcon = L.icon({
-  iconUrl: '/marker-icon.png', // İkonun URL'si
+  iconUrl: '/icon-32.png', // İkonun URL'si
   iconAnchor: [19, 38], // İkonun haritada sabitleneceği nokta
   popupAnchor: [-8, -35] // Popup konumu
 });
@@ -41,7 +41,7 @@ const loadData = async (markers) => {
     if (!response.ok) {
       throw new Error("Veri alınırken hata oluştu.")
     }
-    
+
     const geoJsonData = await response.json()
 
     // Her feature için bir marker oluştur ve cluster'a ekle
@@ -55,7 +55,7 @@ const loadData = async (markers) => {
       const latLng = L.Projection.SphericalMercator.unproject(L.point(coordinates))
 
       // Marker oluştur
-      const marker = L.marker([latLng.lat, latLng.lng],{ icon: customIcon })
+      const marker = L.marker([latLng.lat, latLng.lng], { icon: customIcon })
         .bindPopup(`Yüzölçümü: ${yuzolcumu} m² <br>İhale Tarihi: ${ihale_tarihi}<br>Taşınmaz No: ${tasinmaz_no}`)
 
       // Marker'ı cluster grubuna ekleyin
@@ -68,7 +68,7 @@ const loadData = async (markers) => {
 
 const formatDate = (isoDateString) => {
   const date = new Date(isoDateString)
-  
+
   // Geçerli tarih olup olmadığını kontrol et
   if (isNaN(date.getTime())) {
     return 'Hatalı Tarih'
@@ -86,6 +86,4 @@ onMounted(() => {
 })
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
