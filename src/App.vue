@@ -3,14 +3,14 @@
     <!-- Tab başlıkları -->
     <ul class="tabs">
       <li :class="{ active: activeTab === 1 }" @click="activeTab = 1">Basit Harita</li>
-      <li :class="{ active: activeTab === 2 }" @click="activeTab = 2">Tab 2</li>
+      <li :class="{ active: activeTab === 2 }" @click="activeTab = 2">Özelleştirilmiş Pin</li>
       <li :class="{ active: activeTab === 3 }" @click="activeTab = 3">Tab 3</li>
     </ul>
 
     <!-- Tab içeriği -->
     <div class="tab-content">
-      <BasitHaritaComponent v-if="activeTab === 1" />
-      <TabTwo v-if="activeTab === 2" />
+      <SimpleMapComponent v-if="activeTab === 1" />
+      <CustomIconComponent v-if="activeTab === 2" />
       <TabThree v-if="activeTab === 3" />
     </div>
   </div>
@@ -18,8 +18,8 @@
 
 <script setup>
 import { ref } from 'vue'
-import BasitHaritaComponent from './components/BasitHaritaComponent.vue'
-import TabTwo from './components/TabTwo.vue'
+import SimpleMapComponent from './components/SimpleMapComponent.vue'
+import CustomIconComponent from './components/CustomIconComponent.vue'
 import TabThree from './components/TabThree.vue'
 
 const activeTab = ref(1)
@@ -32,34 +32,34 @@ const activeTab = ref(1)
   list-style-type: none;
   padding: 0;
   margin: 0;
-  border-bottom: 2px solid #ddd; /* Tabların alt çizgisi */
+  border-bottom: 2px solid #1cbd12;
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%; /* Tam genişlik */
+  width: 100%;  
   background-color: #fff;
-  z-index: 1000; /* Tablar üstte görünsün */
+  z-index: 1000;  
 }
 
 .tabs li {
   padding: 15px 20px;
   cursor: pointer;
   color: #666;
-  border-bottom: 3px solid transparent; /* Alt çizgi varsayılan */
+  border-bottom: 3px solid transparent;  
   font-weight: bold;
   margin-right: 10px;
 }
 
 .tabs li.active {
-  border-bottom: 3px solid #5c967c; /* Aktif tabın alt çizgisi */
+  border-bottom: 3px solid #5c967c;  
   color: #42b983;
 }
 
 .tab-content {
-  margin-top: 40px; /* Tabların yukarıdaki konumunu dengelemek için içerik yukarıdan boşluk bırakır */
+  margin-top: 40px;  
   padding: 1px;
   width: 100%;
-  height: calc(100vh - 60px); /* Sekmelerin kapladığı alanı hesaplayarak tam ekran al */
+  height: calc(100vh - 60px); 
 }
 
  

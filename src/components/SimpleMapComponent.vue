@@ -14,7 +14,7 @@ onMounted(() => {
   const map = L.map('map').setView([39.9334, 32.8597], 12)  
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© github.com/ertugrulakdag'
+    attribution: '© <a href="https://github.com/ertugrulakdag/vue3-map-leafletjs" target="_blank">github.com/ertugrulakdag/vue3-map-leafletjs</a>'
   }).addTo(map)
 
   L.marker([39.9334, 32.8597]).addTo(map)
@@ -26,13 +26,10 @@ onMounted(() => {
 <style scoped>
 #map {
   width: 99%;
-  height: 80vh; /* Ekranın tamamını kaplaması için */
+  height: 80vh; 
   border: 5px solid #ddd;
-  /* Çerçeve */
   border-radius: 10px;
-  /* Köşe yumuşatma */
   padding: 5;
-  /* İç boşluk */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Tab 3</h2>
-    <p>Bu Tab 3'ün içeriği.</p>
+    <p>Bu Tab 3'nin içeriği.</p>
   </div>
 </template>
 
