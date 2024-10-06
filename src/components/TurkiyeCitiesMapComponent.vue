@@ -16,7 +16,14 @@
   const geoJsonUrl = '/tr-cities-utf8.json'  // Public klasöründen GeoJSON dosyasına erişim Kaynak:https://github.com/cihadturhan/tr-geojson
   
   const loadMap = () => {
-    map.value = L.map('map').setView([39.9334, 32.8597], 6)
+  map.value = L.map('map', {
+    center: [39.9334, 32.8597],  // Harita merkez koordinatları
+    zoom: 6,                     // Varsayılan zoom seviyesi
+    minZoom: 5,                  // En düşük zoom seviyesi
+    maxZoom: 10,                 // En yüksek zoom seviyesi
+    zoomDelta: 0.5,              // Zoom artırma adımı
+    zoomSnap: 0.5                // Zoom snap adımı
+  })
   
     // OpenStreetMap katmanını ekle
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -65,7 +72,6 @@
   
       const geoJsonData = await response.json()
   
-      // GeoJSON verisini haritaya ekleyin Veri Kaynağı:https://github.com/cihadturhan/tr-geojson/tree/master
       L.geoJSON(geoJsonData, {
         style: {
         color: '#ff0000',  // Sınır rengi (Kırmızı)
