@@ -1,25 +1,33 @@
 <template>
-  <div>
-    <div class="map" id="map"></div>
-  </div>
+  <div class="map" id="map"></div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed, watch } from 'vue'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 
+const props = defineProps({
+  isSidebarVisible: {
+    default: true,
+    type: Boolean
+  }
+})
+
 const map = ref(null)
 const geoJsonUrl = '/tr-cities-utf8.json'  // Türkiye il sınırlarını içeren GeoJSON dosyasının yolu
+const selectedLayer = ref(null)  // Reference to store the selected layer
+
+const emit = defineEmits(['openSidebar'])
 
 const loadMap = () => {
   map.value = L.map('map', {
     center: [38.9637, 35.2433],  // Türkiye'nin ortalama koordinatları
-    zoom: 6.8,                     // Varsayılan zoom seviyesi
-    minZoom: 5,                  // En düşük zoom seviyesi
-    maxZoom: 10,                 // En yüksek zoom seviyesi
-    zoomDelta: 0.5,              // Zoom artırma adımı
-    zoomSnap: 0.5                // Zoom snap adımı
+    zoom: props.isSidebarVisible ? 6.7 : 7.2,  // Sidebar duruma göre zoom seviyesi
+    minZoom: 5,
+    maxZoom: 10,
+    zoomDelta: 0.5,
+    zoomSnap: 0.5
   })
 
   // OpenStreetMap katmanını ekle
@@ -27,7 +35,6 @@ const loadMap = () => {
     attribution: '© <a href="https://github.com/ertugrulakdag/vue3-map-leafletjs" target="_blank">github.com/ertugrulakdag/vue3-map-leafletjs</a>'
   }).addTo(map.value)
 
-  // İl sınırları GeoJSON dosyasını yükleyip haritaya ekleyin
   loadGeoJsonLayer()
 }
 
@@ -40,23 +47,37 @@ const loadGeoJsonLayer = async () => {
     }
 
     const geoJsonData = await response.json()
-    console.log('GeoJSON Verisi:', geoJsonData)  // Veriyi kontrol etmek için konsola yazdırıyoruz
+    console.log('GeoJSON Verisi:', geoJsonData)
 
     // GeoJSON verisini haritaya ekleyin, tıklama özelliklerini ekleyin
     L.geoJSON(geoJsonData, {
       style: {
-        color: '#ff7800',  // Sınır rengi (açık turuncu)
-        weight: 3.1,       // Çizgi kalınlığı
-        opacity: 0.8,      // Çizgi şeffaflığı
-        fillColor: '#ffd39b', // Dolgu rengi (saydam turuncu)
-        fillOpacity: 0.2   // Dolgu şeffaflığı
+        color: '#a78bfa',
+        weight: 3.1,
+        opacity: 0.8,
+        fillColor: '#c4b5fd',
+        fillOpacity: 0.15
       },
       onEachFeature: (feature, layer) => {
-        // Tıklama olayını tanımlıyoruz
-        layer.on('click', (e) => {
-          // Tıklanan ilin adını popup'ta göster
-          layer.bindPopup(`İl: ${feature.properties.name} <br> Diğer Veri: ${feature.properties.someOtherData}`)
-            .openPopup()
+        layer.on('click', () => {
+          // Eğer bir önceki seçili katman varsa, rengini varsayılana döndür
+          if (selectedLayer.value) {
+            selectedLayer.value.setStyle({
+              color: '#a78bfa',
+              fillColor: '#c4b5fd',
+              fillOpacity: 0.15
+            })
+          }
+
+          // Yeni tıklanan katmanın rengini koyulaştır ve seçili katman olarak ayarla
+          layer.setStyle({
+            fillColor: '#7c3aed',
+            fillOpacity: 1
+          })
+
+          selectedLayer.value = layer  // Seçili katmanı güncelle
+          emit('openSidebar', feature.properties.name)
+
         })
       }
     }).addTo(map.value)
@@ -66,9 +87,55 @@ const loadGeoJsonLayer = async () => {
   }
 }
 
+const updateMap = () => {
+  if (map.value) {
+    map.value.remove()  // Remove the current map instance
+  }
+  loadMap()  // Reload the map with the updated settings
+}
+
 onMounted(() => {
   loadMap()
 })
+
+watch(
+  () => props.isSidebarVisible,
+  () => {
+    updateMap()  // Call updateMap when the sidebar visibility changes
+  }
+)
 </script>
 
-<style scoped></style>
+<style>
+.map {
+  width: 1300px;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 1850px) {
+  .map {
+    width: 1000px;
+  }
+}
+
+@media screen and (max-width: 1500px) {
+  .map {
+    width: 800px;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .map {
+    width: 700px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .map {
+    width: 500px;
+  }
+}
+</style>
