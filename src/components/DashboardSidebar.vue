@@ -10,13 +10,13 @@
         </div>
         <div class="sidebar-content">
             <div class="sidebar-content-item">
-                <h3>Satış Sayısı</h3>
+                <h3>Sevilme Oranı</h3>
                 <div class="chart-box">
                     <Chart v-if="isSidebarVisible" type="line" :data="ratingChartData" />
                 </div>
             </div>
             <div class="sidebar-content-item">
-                <h3> Sevilme Oranı</h3>
+                <h3>Satış Sayısı</h3>
                 <div class="chart-box">
                     <Chart v-if="isSidebarVisible" type="bar" :data="ratingChartData" />
                 </div>
