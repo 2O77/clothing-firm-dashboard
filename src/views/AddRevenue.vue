@@ -1,10 +1,13 @@
 <template>
-    <div class="poll-page">
+    <div class="revenue-page">
         <div class="topbar-section">
+            <div class="start-section">
+                <Select placeholder="Şehir Seçiniz"></Select>
+            </div>
             <div class="middle-section">
                 <MultiSelect :options="products" placeholder="Ürün Seçin" filter :max-selected-labels="2"
                     class="product-selector" />
-                <Button label="Anketi Gönder" @click="applyPoll"></Button>
+                <Button label="Hasılatı Gir" @click="applyRevenue"></Button>
             </div>
             <div class="end-section">
                 <Button icon="pi pi-home" @click="goToHome" />
@@ -12,25 +15,25 @@
         </div>
         <div class="main-section">
             <div class="card-section">
-                <PollCard />
-                <PollCard />
-                <PollCard />
-                <PollCard />
-                <PollCard />
-                <PollCard />
-                <PollCard />
-                <PollCard />
-                <PollCard />
-                <PollCard />
-                <PollCard />
-                <PollCard />
-                <PollCard />
-                <PollCard />
-                <PollCard />
-                <PollCard />
-                <PollCard />
-                <PollCard />
-                <PollCard />
+                <RevenueCard />
+                <RevenueCard />
+                <RevenueCard />
+                <RevenueCard />
+                <RevenueCard />
+                <RevenueCard />
+                <RevenueCard />
+                <RevenueCard />
+                <RevenueCard />
+                <RevenueCard />
+                <RevenueCard />
+                <RevenueCard />
+                <RevenueCard />
+                <RevenueCard />
+                <RevenueCard />
+                <RevenueCard />
+                <RevenueCard />
+                <RevenueCard />
+                <RevenueCard />
             </div>
             <div class="apply-section"></div>
         </div>
@@ -39,7 +42,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import PollCard from '../components/PollCard.vue';
+import RevenueCard from '../components/RevenueCard.vue';
 import router from '../router';
 
 const products = ref([
@@ -52,7 +55,7 @@ const goToHome = () => {
     })
 }
 
-const applyPoll = () => {
+const applyRevenue = () => {
     router.push({
         name: 'Home'
     })
@@ -61,7 +64,7 @@ const applyPoll = () => {
 </script>
 
 <style scoped>
-.poll-page {
+.revenue-page {
     width: 100%;
     height: 100%;
     display: flex;

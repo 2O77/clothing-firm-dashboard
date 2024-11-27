@@ -12,7 +12,8 @@
             <div class="home-cards">
                 <HomeCard image="src/assets/Screenshot From 2024-11-26 01-39-04.png" title="Admin Paneli"
                     @click="goToAdminPanel" isAdmin="true" />
-                <HomeCard title="Memnuniyet Anketi" @click="goToPollPanel" isAdmin="false" />
+                <HomeCard title="Hasılat Girme Paneli" @click="goToRevenuePanel" isAdmin="false" />
+                <HomeCard title="Memnuniyet Anketi" @click="goToPollPage" isAdmin="false" />
             </div>
         </div>
         <Button label="Admin Girişi Yap" severity="danger" size="large" style="margin-top: 30px;" />
@@ -29,9 +30,15 @@ const goToAdminPanel = () => {
     })
 }
 
-const goToPollPanel = () => {
+const goToPollPage = () => {
     router.push({
         name: 'Poll'
+    })
+}
+
+const goToRevenuePanel = () => {
+    router.push({
+        name: 'AddRevenue'
     })
 }
 </script>

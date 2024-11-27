@@ -10,7 +10,7 @@
                 <Slider v-model="sliderAgeRange" class="slider-item" range />
             </div>
             <div class="selector-box">
-                <MultiSelect :options="products" placeholder="Ürün Tipi Seçin" filter :max-selected-labels="2"
+                <MultiSelect :options="products" placeholder="Ürün Seçin" filter :max-selected-labels="2"
                     class="product-selector" />
                 <MultiSelect :options="sizes" placeholder="Ürün Bedeni Seçin" filter :max-selected-labels="2"
                     class="product-selector" />
@@ -22,13 +22,17 @@
                 <label for="erkek">erkek</label>
             </div>
         </div>
-        <Button class="sidebar-button" icon="pi pi-bars" @click="toggleSidebarVisibility" />
+        <div class="sidebar-buttons">
+            <Button class="sidebar-button" icon="pi pi-home" @click="goToHome"></Button>
+            <Button class="sidebar-button" icon="pi pi-bars" @click="toggleSidebarVisibility" />
+        </div>
     </div>
 </template>
 
 <script setup>
 import { Checkbox } from 'primevue';
 import { ref } from 'vue';
+import router from '../router';
 
 const emit = defineEmits(['toggleSidebarVisibility'])
 
@@ -48,6 +52,12 @@ const genders = ref([
 
 const toggleSidebarVisibility = () => {
     emit('toggleSidebarVisibility', "")
+}
+
+const goToHome = () => {
+    router.push({
+        name: 'Home'
+    })
 }
 
 </script>
@@ -121,6 +131,12 @@ const toggleSidebarVisibility = () => {
 
 .sidebar-button {
     min-width: 40px;
+}
+
+.sidebar-buttons {
+    display: flex;
+    align-items: center;
+    gap: 20px
 }
 
 @media screen and (max-width: 950px) {

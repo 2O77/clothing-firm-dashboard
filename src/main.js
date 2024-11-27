@@ -76,11 +76,13 @@ import {
   Slider,
   Toolbar,
   InputText,
+  InputNumber,
   Listbox,
   MultiSelect,
   RadioButton,
   Rating,
   Checkbox,
+  Select
 } from 'primevue'
 
 import Chart from 'primevue/chart'
@@ -95,6 +97,8 @@ app.component('RadioButton', RadioButton)
 app.component('Rating', Rating)
 app.component('Checkbox', Checkbox)
 app.component('Chart', Chart)
+app.component('InputNumber', InputNumber)
+app.component('Select',Select)
 
 // Uygulamayı mount etme
 app.mount('#app')
