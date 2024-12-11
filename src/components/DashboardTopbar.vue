@@ -23,7 +23,6 @@
             </div>
         </div>
         <div class="sidebar-buttons">
-            <Button class="sidebar-button" icon="pi pi-home" @click="goToHome"></Button>
             <Button class="sidebar-button" icon="pi pi-bars" @click="toggleSidebarVisibility" />
         </div>
     </div>
@@ -32,7 +31,6 @@
 <script setup>
 import { Checkbox } from 'primevue';
 import { ref } from 'vue';
-import router from '../router';
 
 const emit = defineEmits(['toggleSidebarVisibility'])
 
@@ -55,9 +53,6 @@ const toggleSidebarVisibility = () => {
 }
 
 const goToHome = () => {
-    router.push({
-        name: 'Home'
-    })
 }
 
 </script>

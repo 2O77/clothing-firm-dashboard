@@ -4,7 +4,6 @@ import App from './App.vue'
 import PrimeVue from 'primevue/config'
 import { definePreset } from '@primevue/themes'
 import 'primeicons/primeicons.css'
-import router from './router'
 
 import Aura from '@primevue/themes/aura'
 
@@ -59,18 +58,16 @@ const Violet = definePreset(Aura, {
     },
   },
 })
-app.use(router)
 
 app.use(PrimeVue, {
   theme: {
-    preset: Violet, // Violet teması
+    preset: Violet, 
     options: {
-      darkModeSelector: 'system', // Sistemin karanlık mod seçeneğine göre tema
+      darkModeSelector: 'system',
     },
   },
 })
 
-// PrimeVue Toolbar bileşenini kaydetme
 import {
   Button,
   Slider,
@@ -82,7 +79,8 @@ import {
   RadioButton,
   Rating,
   Checkbox,
-  Select
+  Select,
+  InputOtp,
 } from 'primevue'
 
 import Chart from 'primevue/chart'
@@ -98,7 +96,7 @@ app.component('Rating', Rating)
 app.component('Checkbox', Checkbox)
 app.component('Chart', Chart)
 app.component('InputNumber', InputNumber)
-app.component('Select',Select)
+app.component('Select', Select)
+app.component('InputOtp', InputOtp)
 
-// Uygulamayı mount etme
 app.mount('#app')

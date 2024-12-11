@@ -5,14 +5,10 @@
                 alt="image">
         </div>
         <div class="poll-section">
-            <div class="poll-item like-section">
-                <h4>Ürünü Ne Kadar Beğendiniz?</h4>
-                <Rating v-model="value" />
-            </div>
-            <div class="poll-item currency-section">
-                <h4>Fiyat Beklentiniz Nedir?</h4>
-                <h4>(Gerçek Fiyat: 3131₺)</h4>
-                <InputNumber class="poll-input" mode="currency" currency="TRY" locale="tr-TR" />
+            <div class="poll-item">
+                <h4>Ürün Kodu Giriniz</h4>
+                <InputOtp :length="6" class="poll-input" />
+                <Button label="Ankete Katıl" @click="goToPollPage" />
             </div>
         </div>
     </div>
@@ -35,7 +31,6 @@ const props = defineProps({
 
 })
 
-const value = ref(null);
 </script>
 
 <style setup>
@@ -54,13 +49,12 @@ const value = ref(null);
 }
 
 .poll-card:hover {
-    transform: scale(1.02);
     box-shadow: 0px 12px 12px rgba(0, 0, 0, 0.5);
 }
 
 .image-section {
     width: 100%;
-    height: 50%;
+    height: 65%;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -78,8 +72,10 @@ const value = ref(null);
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 50%;
-    gap: 10px;
+    height: 35%;
+    gap: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px
 }
 
 .poll-item {
@@ -87,7 +83,7 @@ const value = ref(null);
     align-items: center;
     display: flex;
     flex-direction: column;
-    gap: 0;
+    gap: 5px;
 }
 
 .like-section h4 {
@@ -95,12 +91,12 @@ const value = ref(null);
     margin-top: 0px;
 }
 
-.currency-section h4 {
+.poll-item h4 {
     margin-bottom: 2px;
-    margin-top: 3px;
+    margin-top: 0px;
 }
 
 .poll-input {
-    margin-top: 10px
+    margin-bottom: 5px
 }
 </style>

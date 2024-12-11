@@ -33,9 +33,9 @@ const props = defineProps({
 <style scoped>
 .home-card {
     width: 300px;
-    height: 350px;
+    height: 400px;
     overflow: hidden;
-    border: 1px solid var(--p-content-border-color);
+    border: 1px solid var(--p-primary-color);
     border-radius: var(--p-content-border-radius);
     background-color: var(--p-content-background);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -69,9 +69,5 @@ const props = defineProps({
     align-items: center;
     height: 25%;
     display: flex;
-}
-
-.admin-card {
-    border: 1px solid var(--p-primary-color);
 }
 </style>

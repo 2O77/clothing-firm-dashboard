@@ -1,5 +1,5 @@
 <template>
-    <div class="poll-card">
+    <div class="revenue-card">
         <div class="image-section">
             <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpgcpsmess.files.wordpress.com%2F2014%2F04%2Fimage40.jpg&f=1&nofb=1&ipt=c800b9b318a4e07317853c94c4aa6189c3778529a9d0f5f3c52c025a154f2718&ipo=images"
                 alt="image">
@@ -32,7 +32,7 @@ const value = ref(null);
 </script>
 
 <style setup>
-.poll-card {
+.revenue-card {
     width: 300px;
     height: 400px;
     overflow: hidden;
@@ -46,7 +46,7 @@ const value = ref(null);
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-.poll-card:hover {
+.revenue-card:hover {
     transform: scale(1.02);
     box-shadow: 0px 12px 12px rgba(0, 0, 0, 0.5);
 }
@@ -69,6 +69,7 @@ const value = ref(null);
     justify-content: center;
     align-items: center;
     display: flex;
+    gap: 10px;
     flex-direction: column;
     width: 100%;
     height: 30%;
