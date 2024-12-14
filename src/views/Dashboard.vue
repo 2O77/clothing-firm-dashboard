@@ -26,8 +26,8 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-const isSidebarVisible = ref(false)
-const selectedCity = ref(null)
+const isSidebarVisible = ref(true)
+const selectedCity = ref("Türkiye Geneli")
 const model = ref(null)
 const size = ref(null)
 const gender = ref(null)
