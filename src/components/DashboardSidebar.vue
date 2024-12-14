@@ -121,12 +121,12 @@ const processData = (response) => {
                 ratings.push(parseFloat(dataPoint.avg_rating) || 0);
                 prices.push(parseFloat(dataPoint.avg_expected_price) || 0);
 
-                trueFalseQuestion1.push(parseFloat(dataPoint.avg_question_1) || 0);
-                trueFalseQuestion2.push(parseFloat(dataPoint.avg_question_2) || 0);
-                trueFalseQuestion3.push(parseFloat(dataPoint.avg_question_3) || 0);
-                trueFalseQuestion4.push(parseFloat(dataPoint.avg_question_4) || 0);
-                trueFalseQuestion5.push(parseFloat(dataPoint.avg_question_5) || 0);
-                trueFalseQuestion6.push(parseFloat(dataPoint.avg_question_6) || 0);
+                trueFalseQuestion1.push(parseFloat(dataPoint.avg_question_1) * 100 || 0);
+                trueFalseQuestion2.push(parseFloat(dataPoint.avg_question_2) * 100 || 0);
+                trueFalseQuestion3.push(parseFloat(dataPoint.avg_question_3) * 100 || 0);
+                trueFalseQuestion4.push(parseFloat(dataPoint.avg_question_4) * 100 || 0);
+                trueFalseQuestion5.push(parseFloat(dataPoint.avg_question_5) * 100 || 0);
+                trueFalseQuestion6.push(parseFloat(dataPoint.avg_question_6) * 100 || 0);
             }
         }
     });
