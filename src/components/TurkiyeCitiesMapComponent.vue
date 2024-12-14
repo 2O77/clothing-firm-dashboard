@@ -49,7 +49,6 @@ const loadGeoJsonLayer = async () => {
     const geoJsonData = await response.json()
     console.log('GeoJSON Verisi:', geoJsonData)
 
-    // GeoJSON verisini haritaya ekleyin, tıklama özelliklerini ekleyin
     L.geoJSON(geoJsonData, {
       style: {
         color: '#a78bfa',
@@ -60,7 +59,6 @@ const loadGeoJsonLayer = async () => {
       },
       onEachFeature: (feature, layer) => {
         layer.on('click', () => {
-          // Eğer bir önceki seçili katman varsa, rengini varsayılana döndür
           if (selectedLayer.value) {
             selectedLayer.value.setStyle({
               color: '#a78bfa',
@@ -69,13 +67,12 @@ const loadGeoJsonLayer = async () => {
             })
           }
 
-          // Yeni tıklanan katmanın rengini koyulaştır ve seçili katman olarak ayarla
           layer.setStyle({
             fillColor: '#7c3aed',
             fillOpacity: 1
           })
 
-          selectedLayer.value = layer  // Seçili katmanı güncelle
+          selectedLayer.value = layer
           emit('openSidebar', feature.properties.name)
 
         })

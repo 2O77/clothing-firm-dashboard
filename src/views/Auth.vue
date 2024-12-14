@@ -1,15 +1,15 @@
 <template>
     <div class="auth">
         <div class="auth-box">
-            <h3>Admin Login</h3>
+            <h3>Admin Giriş</h3>
             <div class="auth-field">
                 <div class="username">
-                    <InputText v-model="username" placeholder="Username" />
+                    <InputText v-model="username" placeholder="İsim" />
                 </div>
                 <div class="password">
-                    <InputText v-model="password" type="password" placeholder="Password" @keyup.enter="handleLogin" />
+                    <InputText v-model="password" type="password" placeholder="Şifre" @keyup.enter="handleLogin" />
                 </div>
-                <Button @click="handleLogin">Login</Button>
+                <Button @click="handleLogin">Giriş Yap</Button>
             </div>
         </div>
     </div>

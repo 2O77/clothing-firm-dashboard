@@ -10,22 +10,24 @@
                 <Slider v-model="sliderAgeRange" class="slider-item" range />
             </div>
             <div class="selector-box">
-                <Select v-model="selectedProduct" :options="models" placeholder="Ürün Seçin" filter
+                <Select v-model="selectedModel" :options="models" placeholder="Ürün Seçin" filter
                     :max-selected-labels="2" class="product-selector" />
                 <Select v-model="selectedSize" :options="sizes" placeholder="Ürün Bedeni Seçin" filter
                     :max-selected-labels="2" class="product-selector" />
             </div>
             <div class="radio-buttons">
-                <RadioButton v-model="selectedGender" value="female" />
-                <label for="kadin">kadın</label>
-                <RadioButton v-model="selectedGender" value="male" />
-                <label for="erkek">erkek</label>
-                <RadioButton v-model="selectedGender" value="other" />
-                <label for="diğer">diğer</label>
+                <RadioButton v-model="selectedGender" :value="'female'" @click="toggleSelection('female')" />
+                <label for="kadin">Kadın</label>
+
+                <RadioButton v-model="selectedGender" :value="'male'" @click="toggleSelection('male')" />
+                <label for="erkek">Erkek</label>
+
+                <RadioButton v-model="selectedGender" :value="'other'" @click="toggleSelection('other')" />
+                <label for="diğer">Diğer</label>
             </div>
         </div>
         <div class="sidebar-buttons">
-            <Button class="sidebar-button" severity="danger" outlined="true" @click="handleLogout">Logout</Button>
+            <Button class="sidebar-button" severity="danger" outlined="true" @click="handleLogout">Çıkış Yap</Button>
             <Button class="sidebar-button" icon="pi pi-bars" @click="toggleSidebarVisibility" />
         </div>
     </div>
@@ -40,18 +42,22 @@ const router = useRouter()
 
 const emit = defineEmits(['toggleSidebarVisibility', 'update'])
 
-const selectedProduct = ref(null)
-const selectedSize = ref(null)
+const toggleSelection = (value) => {
+    selectedGender.value = selectedGender.value === value ? '' : value;
+};
+
+const selectedModel = ref("Bütün Modeller")
+const selectedSize = ref("Bütün Bedenler")
 const selectedGender = ref(null)
 
 const sliderAgeRange = ref([0, 99])
-const models = ref(['kot pantolon', 'kırmızı kazak', 'gri atkı', 'converse ayakkabı', 'sarı mont'])
-const sizes = ref(["xxl", "xl", "l", "m", "s", "xs"])
+const models = ref(["Bütün Modeller", 'Kot Pantolon', 'Kırmızı Kazak', 'Gri Atkı', 'Converse Ayakkabı', 'Sarı Mont'])
+const sizes = ref(["Bütün Bedenler", "XXL", "XL", "L", "M", "S", "XS"])
 
 let debounceTimeout = null
 const debounceDelay = 500
 
-watch([sliderAgeRange, selectedProduct, selectedSize, selectedGender], () => {
+watch([sliderAgeRange, selectedModel, selectedSize, selectedGender], () => {
     if (debounceTimeout) {
         clearTimeout(debounceTimeout)
     }
@@ -59,7 +65,7 @@ watch([sliderAgeRange, selectedProduct, selectedSize, selectedGender], () => {
     debounceTimeout = setTimeout(() => {
         emit('update', {
             sliderAgeRange: sliderAgeRange.value,
-            model: selectedProduct.value,
+            model: selectedModel.value,
             size: selectedSize.value,
             gender: selectedGender.value
         })

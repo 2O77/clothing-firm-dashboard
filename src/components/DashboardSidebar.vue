@@ -21,7 +21,8 @@
                 </div>
             </div>
             <div class="sidebar-content-item">
-                <h3>Soru 1</h3>
+                <h3 style="margin-bottom: 3px;">Soru 1</h3>
+                <h5 style="text-align: center; margin: 0; padding: 0;">(Bütün sorular %'lik olarak hesaplanmıştır.)</h5>
                 <div class="chart-box">
                     <Chart v-if="isSidebarVisible" type="bar" :data="trueFalseQuestionChartData1" />
                 </div>
@@ -94,7 +95,6 @@ const processData = (response) => {
         'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'
     ];
 
-    console.log(props.responseData);
     const ratings = [];
     const prices = [];
     const trueFalseQuestion1 = [];
@@ -129,18 +129,6 @@ const processData = (response) => {
         }
     });
 
-    console.log('Processed data:', {
-        labels,
-        ratings,
-        prices,
-        trueFalseQuestion1,
-        trueFalseQuestion2,
-        trueFalseQuestion3,
-        trueFalseQuestion4,
-        trueFalseQuestion5,
-        trueFalseQuestion6,
-    });
-
     // Grafik verisi oluşturma
     const ratingData = {
         labels: labels,
@@ -171,7 +159,6 @@ const processData = (response) => {
     };
 
 
-    // Soru 1 - 6 grafik verileri
     const trueFalseQuestionData1 = {
         labels: labels,
         datasets: [
@@ -204,8 +191,8 @@ const processData = (response) => {
             {
                 label: 'Kıyafetin bedeni size uygun mu?',
                 data: trueFalseQuestion3,
-                backgroundColor: 'rgba(75, 192, 192, 0.2)', // Mavi tonunda arka plan
-                borderColor: 'rgb(75, 192, 192)', // Mavi tonunda sınır
+                backgroundColor: 'rgba(75, 112, 192, 0.2)', // Mavi tonunda arka plan
+                borderColor: 'rgb(75, 112, 192)', // Mavi tonunda sınır
                 borderWidth: 1,
             },
         ],
@@ -244,8 +231,8 @@ const processData = (response) => {
             {
                 label: 'Ürünün genel kalitesine dair olumsuz deneyim yaşadınız mı?',
                 data: trueFalseQuestion6,
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgba(155, 49, 132, 0.2)',
+                borderColor: 'rgb(155, 49, 132)',
                 borderWidth: 1,
             },
         ],

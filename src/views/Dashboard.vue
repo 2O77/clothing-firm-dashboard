@@ -43,6 +43,7 @@ const toggleSidebarVisibility = () => {
 const openSidebar = (cityName) => {
     isSidebarVisible.value = true
     selectedCity.value = cityName
+
 }
 
 const closeSidebar = () => {
@@ -54,6 +55,14 @@ const handleUpdate = (updatedValues) => {
     model.value = updatedValues.model
     size.value = updatedValues.size
     gender.value = updatedValues.gender
+
+    if (model.value === "Bütün Modeller") {
+        model.value = null
+    }
+
+    if (size.value === "Bütün Bedenler") {
+        size.value = null
+    }
 }
 
 const sendDashboardRequest = async () => {
@@ -65,7 +74,9 @@ const sendDashboardRequest = async () => {
         city: selectedCity.value
     }
 
-    console.log('Sending request with data:', data)
+    if (data.city === "Türkiye Geneli") {
+        data.city = null
+    }
 
     try {
         const response = await fetch('http://localhost:3000/dashboard', {
@@ -102,8 +113,8 @@ watch([sliderAgeRange, model, size, gender, selectedCity], () => {
 }, { immediate: true })
 
 onMounted(() => {
-    sendDashboardRequest();
     getToken();
+    sendDashboardRequest();
 })
 
 </script>
