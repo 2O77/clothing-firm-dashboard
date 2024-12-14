@@ -10,16 +10,18 @@
                 <Slider v-model="sliderAgeRange" class="slider-item" range />
             </div>
             <div class="selector-box">
-                <MultiSelect :options="products" placeholder="Ürün Seçin" filter :max-selected-labels="2"
-                    class="product-selector" />
-                <MultiSelect :options="sizes" placeholder="Ürün Bedeni Seçin" filter :max-selected-labels="2"
-                    class="product-selector" />
+                <Select v-model="selectedProduct" :options="models" placeholder="Ürün Seçin" filter
+                    :max-selected-labels="2" class="product-selector" />
+                <Select v-model="selectedSize" :options="sizes" placeholder="Ürün Bedeni Seçin" filter
+                    :max-selected-labels="2" class="product-selector" />
             </div>
             <div class="radio-buttons">
-                <Checkbox v-model="genders" value="kadın" />
+                <RadioButton v-model="selectedGender" value="female" />
                 <label for="kadin">kadın</label>
-                <Checkbox v-model="genders" value="erkek" />
+                <RadioButton v-model="selectedGender" value="male" />
                 <label for="erkek">erkek</label>
+                <RadioButton v-model="selectedGender" value="other" />
+                <label for="diğer">diğer</label>
             </div>
         </div>
         <div class="sidebar-buttons">
@@ -29,32 +31,39 @@
 </template>
 
 <script setup>
-import { Checkbox } from 'primevue';
-import { ref } from 'vue';
+import { defineProps, defineEmits, ref, watch } from 'vue'
 
-const emit = defineEmits(['toggleSidebarVisibility'])
+const emit = defineEmits(['toggleSidebarVisibility', 'update'])
 
-const sliderAgeRange = ref([18, 99])
+const selectedProduct = ref(null)  // Update to single value
+const selectedSize = ref(null)  // Update to single value
+const selectedGender = ref(null)  // Update to single value
 
-const products = ref([
-    'gömlek', 'kazak', 'pantul'
-])
+const sliderAgeRange = ref([0, 99])
+const models = ref(['kot pantolon', 'kırmızı kazak', 'gri atkı', 'converse ayakkabı', 'sarı mont'])
+const sizes = ref(["xxl", "xl", "l", "m", "s", "xs"])
 
-const sizes = ref([
-    "xxl", "xl", "l", "m", "s", "xs"
-])
+let debounceTimeout = null
+const debounceDelay = 500
 
-const genders = ref([
-    'erkek', 'kadın'
-])
+watch([sliderAgeRange, selectedProduct, selectedSize, selectedGender], () => {
+    if (debounceTimeout) {
+        clearTimeout(debounceTimeout)
+    }
+
+    debounceTimeout = setTimeout(() => {
+        emit('update', {
+            sliderAgeRange: sliderAgeRange.value,
+            model: selectedProduct.value,  // Single value
+            size: selectedSize.value,  // Single value
+            gender: selectedGender.value  // Single value
+        })
+    }, debounceDelay)
+})
 
 const toggleSidebarVisibility = () => {
-    emit('toggleSidebarVisibility', "")
+    emit('toggleSidebarVisibility')
 }
-
-const goToHome = () => {
-}
-
 </script>
 
 <style scoped>

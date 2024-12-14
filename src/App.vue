@@ -2,27 +2,34 @@
     <div class="dashboard-page">
         <div class="main">
             <div class="topbar-section">
-                <DashboardTopbar @toggleSidebarVisibility="toggleSidebarVisibility" />
+                <DashboardTopbar @toggleSidebarVisibility="toggleSidebarVisibility" @update="handleUpdate"
+                    :sliderAgeRange="sliderAgeRange" :model="model" :size="size" :gender="gender" />
             </div>
             <div class="map-section">
                 <TurkiyeCitiesMapComponent :isSidebarVisible="isSidebarVisible" @openSidebar="openSidebar" />
             </div>
         </div>
         <div :class="isSidebarVisible ? 'sidebar-section' : 'sidebar-not-visible'">
-            <DashboardSidebar :isSidebarVisible="isSidebarVisible" :cityName="selectedCity"
-                @closeSidebar="closeSidebar" />
+            <DashboardSidebar :isSidebarVisible="isSidebarVisible" :cityName="selectedCity" @closeSidebar="closeSidebar"
+                :responseData="responseData" />
         </div>
     </div>
 </template>
 
 <script setup>
+import { onMounted, ref, watch } from 'vue'
 import TurkiyeCitiesMapComponent from '../src/components/TurkiyeCitiesMapComponent.vue'
 import DashboardTopbar from '../src/components/DashboardTopbar.vue'
-import DashboardSidebar from '../src/components/DashboardSidebar.vue';
-import { ref } from 'vue';
+import DashboardSidebar from '../src/components/DashboardSidebar.vue'
 
-const isSidebarVisible = ref(true)
-const selectedCity = ref('Türkiye Geneli')
+const isSidebarVisible = ref(false)
+const selectedCity = ref(null)
+const model = ref(null)
+const size = ref(null)
+const gender = ref(null)
+const sliderAgeRange = ref([0, 99])
+
+const responseData = ref(null)
 
 const toggleSidebarVisibility = () => {
     isSidebarVisible.value = !isSidebarVisible.value
@@ -37,6 +44,45 @@ const openSidebar = (cityName) => {
 const closeSidebar = () => {
     isSidebarVisible.value = false
 }
+
+const handleUpdate = (updatedValues) => {
+    sliderAgeRange.value = updatedValues.sliderAgeRange
+    model.value = updatedValues.model
+    size.value = updatedValues.size
+    gender.value = updatedValues.gender
+}
+
+const sendDashboardRequest = async () => {
+    const data = {
+        age_range: sliderAgeRange.value.join('-'),
+        model: model.value,
+        size: size.value,
+        gender: gender.value,
+        city: selectedCity.value
+    }
+
+    console.log('Sending request with data:', data)
+
+    try {
+        const response = await fetch('http://localhost:3000/dashboard', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        const result = await response.json()
+        console.log('Response:', result)
+
+        responseData.value = result
+    } catch (error) {
+        console.error('Error making request:', error)
+    }
+}
+
+watch([sliderAgeRange, model, size, gender, selectedCity], () => {
+    sendDashboardRequest();
+}, { immediate: true })
 </script>
 
 <style scoped>
