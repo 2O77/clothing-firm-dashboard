@@ -114,10 +114,8 @@ const processData = (response) => {
             if (monthIndex >= 0 && monthIndex < months.length) {
                 const monthName = months[monthIndex];
 
-                // Etiketleri ekleyin
                 labels.push(`${monthName} ${year}`);
 
-                // Sevilme oranı ve fiyat verilerini ekleyin
                 ratings.push(parseFloat(dataPoint.avg_rating) || 0);
                 prices.push(parseFloat(dataPoint.avg_expected_price) || 0);
 

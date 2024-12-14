@@ -25,6 +25,7 @@
             </div>
         </div>
         <div class="sidebar-buttons">
+            <Button class="sidebar-button" severity="danger" outlined="true" @click="handleLogout">Logout</Button>
             <Button class="sidebar-button" icon="pi pi-bars" @click="toggleSidebarVisibility" />
         </div>
     </div>
@@ -32,12 +33,16 @@
 
 <script setup>
 import { defineProps, defineEmits, ref, watch } from 'vue'
+import { useRouter } from 'vue-router';
+import AuthService from '../services/AuthService';
+
+const router = useRouter()
 
 const emit = defineEmits(['toggleSidebarVisibility', 'update'])
 
-const selectedProduct = ref(null)  // Update to single value
-const selectedSize = ref(null)  // Update to single value
-const selectedGender = ref(null)  // Update to single value
+const selectedProduct = ref(null)
+const selectedSize = ref(null)
+const selectedGender = ref(null)
 
 const sliderAgeRange = ref([0, 99])
 const models = ref(['kot pantolon', 'kırmızı kazak', 'gri atkı', 'converse ayakkabı', 'sarı mont'])
@@ -54,15 +59,22 @@ watch([sliderAgeRange, selectedProduct, selectedSize, selectedGender], () => {
     debounceTimeout = setTimeout(() => {
         emit('update', {
             sliderAgeRange: sliderAgeRange.value,
-            model: selectedProduct.value,  // Single value
-            size: selectedSize.value,  // Single value
-            gender: selectedGender.value  // Single value
+            model: selectedProduct.value,
+            size: selectedSize.value,
+            gender: selectedGender.value
         })
     }, debounceDelay)
 })
 
 const toggleSidebarVisibility = () => {
     emit('toggleSidebarVisibility')
+}
+
+const handleLogout = () => {
+    if (confirm('Çıkış yapmak istediğinize emin misiniz?')) {
+        AuthService.logout()
+        router.push('/auth')
+    }
 }
 </script>
 
@@ -140,7 +152,7 @@ const toggleSidebarVisibility = () => {
 .sidebar-buttons {
     display: flex;
     align-items: center;
-    gap: 20px
+    gap: 8px
 }
 
 @media screen and (max-width: 950px) {

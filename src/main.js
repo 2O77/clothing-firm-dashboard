@@ -4,10 +4,12 @@ import App from './App.vue'
 import PrimeVue from 'primevue/config'
 import { definePreset } from '@primevue/themes'
 import 'primeicons/primeicons.css'
-
+import router from './router'
 import Aura from '@primevue/themes/aura'
 
 const app = createApp(App)
+
+app.use(router)
 
 const Violet = definePreset(Aura, {
   semantic: {
@@ -61,7 +63,7 @@ const Violet = definePreset(Aura, {
 
 app.use(PrimeVue, {
   theme: {
-    preset: Violet, 
+    preset: Violet,
     options: {
       darkModeSelector: 'system',
     },
