@@ -9,7 +9,9 @@
         </div>
         <div class="sidebar-content">
             <div class="sidebar-content-item">
-                <h3>Sevilme Oranı</h3>
+                <h3 style="margin-bottom: 3px;">Sevilme Oranı</h3>
+                <h5 style="text-align: center; margin: 0; padding: 0;">(1 ile 5 arası değerler üzerinden
+                    hesaplanmıştır.)</h5>
                 <div class="chart-box">
                     <Chart v-if="isSidebarVisible" type="line" :data="ratingChartData" />
                 </div>

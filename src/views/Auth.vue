@@ -33,7 +33,7 @@ const handleLogin = async () => {
             router.push('/');
         }
     } catch (error) {
-        console.error('Login failed', error.message);
+        alert('Kullanıcı adı veya şifre hatalı!');
     }
 };
 </script>
